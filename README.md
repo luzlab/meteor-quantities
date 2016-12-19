@@ -1,4 +1,4 @@
-This packages add support to Meteor for using numbers with real units. This package Meteor-izes the
+This packages add support to Meteor for using numbers with phyiscal units. This package Meteor-izes the
 [js-quantities npm module](https://www.npmjs.com/package/js-quantities), adding the necessary methods
 to support serialization and deserialization by Meteor. This allows the use of quanties in publications,
 Meteor methods and arguments.

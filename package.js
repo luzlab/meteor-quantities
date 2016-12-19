@@ -1,7 +1,7 @@
 Package.describe({
-  name: 'additivegenius:quantities',
+  name: 'fathom:quantities',
   version: '1.0.0',
-  summary: 'Allows Meteor to understand physical units and handle their conversions and formatting via the js-quantites ',
+  summary: 'Allows Meteor to understand physical units (including conversions and formatting).',
   git: 'git@github.com:studioFATHOM/meteor-quantities.git',
   documentation: 'README.md'
 });
