@@ -1,9 +1,6 @@
 import Qty from './index.js';
 import { EJSON } from 'meteor/ejson';
 import { check } from 'meteor/check';
-import { chai } from 'meteor/practicalmeteor:chai';
-
-const assert = chai.assert;
 
 if (Meteor.isServer) {
   Meteor.methods({
@@ -17,43 +14,41 @@ if (Meteor.isServer) {
   })
 }
 
-describe('quantities', function() {
-  it('Serialize a Qty to a JSON-ifyable String', function() {
-    let qty = Qty('1 m');
-    let stringified_qty = EJSON.stringify(qty);
-    assert.isString(stringified_qty, 'Qty can be serialized by EJSON');
-    let parsed_qty = JSON.parse(stringified_qty);
-    assert.isObject(parsed_qty, 'String is a valid JSON');
-  });
+Tinytest.add('Serialize a Qty to a JSON-ifyable String', function(test) {
+  let qty = Qty('1 m');
+  let stringified_qty = EJSON.stringify(qty);
+  test.isUndefined(check(stringified_qty, String), 'Qty can be stringified by EJSON');
+  let parsed_qty = JSON.parse(stringified_qty);
+  test.isUndefined(check(parsed_qty, Object), 'String can be parsed to a valid JSON');
+});
 
-  it('Deserialize a Qty from an EJSON', function() {
-    let qty = Qty('1 m');
-    let stringified_qty = EJSON.stringify(qty);
-    let parsed_qty = EJSON.parse(stringified_qty);
-    assert.instanceOf(parsed_qty, Qty, 'Parsed qty is an instance of Qty');
-  });
+Tinytest.add('Deserialize a Qty from an EJSON', function(test) {
+  let qty = Qty('1 m');
+  let stringified_qty = EJSON.stringify(qty);
+  let parsed_qty = EJSON.parse(stringified_qty);
+  test.instanceOf(parsed_qty, Qty, 'Parsed qty is an instance of Qty');
+});
 
-  it('Send a qty via a Meteor Method', function() {
-    let qty = Qty('10 cm');
-    Meteor.call('is_qty', qty, (error, result) => {
-      if (error) throw new Error('Error calling `is_qty` method');
-      assert.isTrue(result);
-    });
+Tinytest.addAsync('Send a qty via a Meteor Method', function(test, onComplete) {
+  let qty = Qty('10 cm');
+  Meteor.call('is_qty', qty, (error, result) => {
+    if (error) throw new Error('Error calling `is_qty` method');
+    test.isTrue(result);
+    onComplete();
   });
+});
 
-  it('Compare two quantities', function() {
-    let qty1 = Qty('10 cm');
-    let qty2 = Qty('0.1 m');
-    let qty3 = Qty('1 mile');
-    assert.isTrue(EJSON.equals(qty1, qty2), '`10 cm` is equal to `0.1 m`');
-    assert.isFalse(EJSON.equals(qty1, qty3), '`10 cm` is not equal to `1 mile`');
-  });
+Tinytest.add('Compare two quantities', function(test) {
+  let qty1 = Qty('10 cm');
+  let qty2 = Qty('0.1 m');
+  let qty3 = Qty('1 mile');
+  test.isTrue(EJSON.equals(qty1, qty2), '`10 cm` is equal to `0.1 m`');
+  test.isFalse(EJSON.equals(qty1, qty3), '`10 cm` is not equal to `1 mile`');
+});
 
-  it('Clone a quantity', function() {
-    let qty1 = Qty('10 cm');
-    let qty2 = EJSON.clone(qty1);
-    assert.instanceOf(qty2, Qty, 'Parsed qty is an instance of Qty');
-    assert.isTrue(EJSON.equals(qty1, qty2), 'Cloned qty is equal to original');
-  });
-
-})
+Tinytest.add('Clone a quantity', function(test) {
+  let qty1 = Qty('10 cm');
+  let qty2 = EJSON.clone(qty1);
+  test.instanceOf(qty2, Qty, 'Parsed qty is an instance of Qty');
+  test.isTrue(EJSON.equals(qty1, qty2), 'Cloned qty is equal to original');
+});
