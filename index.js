@@ -7,24 +7,27 @@ const Qty = require('js-quantities');
 
 function Qty_factory(value) {
   return Qty(value);
-}
+};
 
-EJSON.addType(type_name, Qty_factory)
+EJSON.addType(type_name, Qty_factory);
 
 Qty.prototype.typeName = function typeName() {
   return type_name
 };
 
 Qty.prototype.toJSONValue = function toJSONValue() {
-	return this.toString();;
+	let object_definition = {
+		scalar: this.scalar,
+		numerator : this.numerator,
+		denominator : this.denominator
+	};
+	return object_definition;
 };
 
 Qty.prototype.clone = function clone() {
 	return new Qty(this);
 };
 
-Qty.prototype.equals = function equals(qty) {
-	return this.eq(qty);
-};
+Qty.prototype.equals = Qty.prototype.eq;
 
 export default Qty;

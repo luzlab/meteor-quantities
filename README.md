@@ -26,7 +26,15 @@ let volume = Qty('1 cm^3');
 let density = weight.div(volume);
 
 let sample_volume = Qty('0.1 m^3');
-let sample_weight = sample_volume.div(density); // return 
+let sample_weight = sample_volume.add(density); // returns QtyError 'Incompatible units'
+let sample_weight = sample_volume.div(density); // Note - we should multiple, not divide, by density
+sample_weight.toString('kg'); // returns QtyError 'Incompatible units' since we dividied by density...
+
+let sample_weight = sample_volume.mul(density); // Do the right operation with density
+sample_weight.toString('kg'); // returns '110 g' // Now these work as expected
+sample_weight.toString('lb'); // returns the '242.50848840336533 lb'
+sample_weight.toString('lb', 2); // returns the '242.51 lb'
+sample_weight.toString('m'); // returns QtyError 'Incompatible units'
 
 ```
 

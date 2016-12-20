@@ -1,8 +1,8 @@
 Package.describe({
   name: 'fathom:quantities',
-  version: '1.0.0',
+  version: '1.0.1',
   summary: 'Allows Meteor to understand physical units (including conversions and formatting).',
-  git: 'git@github.com:studioFATHOM/meteor-quantities.git',
+  git: 'https://github.com/studioFATHOM/meteor-quantities.git',
   documentation: 'README.md'
 });
 
