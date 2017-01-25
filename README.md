@@ -7,7 +7,7 @@ Meteor methods and arguments.
 # Example usage
 
 ```
-import Qty from 'fathom:quantities';
+import Qty from 'meteor/fathom:quantities';
 
 if (Meteor.isServer) {
 	Meteor.methods({
