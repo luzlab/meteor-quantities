@@ -1,9 +1,9 @@
 {
   "dependencies": {
     "js-quantities": {
-      "version": "1.6.3",
-      "resolved": "https://registry.npmjs.org/js-quantities/-/js-quantities-1.6.3.tgz",
-      "from": "js-quantities@1.6.3"
+      "version": "1.6.6",
+      "resolved": "https://registry.npmjs.org/js-quantities/-/js-quantities-1.6.6.tgz",
+      "from": "js-quantities@1.6.6"
     }
   }
 }

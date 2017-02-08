@@ -45,4 +45,4 @@ with the additional methods:
 * .typeName() - returns 'js-quantity'
 * .toJSONValue() - returns a JSON-ifyable string
 * .clone() - Returns a new Qty object equal to the argument.
-* .equals() - defers to Qty.eq() method
+* .equals() - defers to Qty.eq() method if units are compatible; false otherwise
