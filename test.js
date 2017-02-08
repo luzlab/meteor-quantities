@@ -46,6 +46,12 @@ Tinytest.add('Compare two quantities', function(test) {
   test.isFalse(EJSON.equals(qty1, qty3), '`10 cm` is not equal to `1 mile`');
 });
 
+Tinytest.add('Compare two incompatible quantities', function(test) {
+  let qty1 = Qty('1 cm');
+  let qty2 = Qty('1 C');
+  test.isFalse(EJSON.equals(qty1, qty2), '`1 cm` is not equal to `1 C`');
+});
+
 Tinytest.add('Clone a quantity', function(test) {
   let qty1 = Qty('10 cm');
   let qty2 = EJSON.clone(qty1);

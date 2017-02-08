@@ -28,6 +28,12 @@ Qty.prototype.clone = function clone() {
 	return new Qty(this);
 };
 
-Qty.prototype.equals = Qty.prototype.eq;
+Qty.prototype.equals = function equals(other) {
+        if (this.isCompatible(other)) {
+                return this.eq(other);
+        } else {
+                return false;
+        }
+}
 
 export default Qty;
