@@ -1,6 +1,6 @@
 Package.describe({
   name: 'fathom:quantities',
-  version: '1.0.6',
+  version: '1.0.7',
   summary:
     'Allows Meteor to understand physical units (including conversions and formatting).',
   git: 'https://github.com/studioFATHOM/meteor-quantities.git',
@@ -9,7 +9,7 @@ Package.describe({
 
 Npm.depends({
   'js-quantities': '1.6.6',
-  'ejson-extras': '1.0.14',
+  'ejson-extras': '1.0.15',
 });
 
 Package.onUse(function(api) {

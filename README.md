@@ -46,4 +46,6 @@ This package uses the npm module [`ejson-extras`](https://www.npmjs.com/package/
 
 # Changelog
 
+1.0.6 Updated ejson-extras module to fix Map stringify/parse bug
+
 1.0.5 Added missing test dependancies
